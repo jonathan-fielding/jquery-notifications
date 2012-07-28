@@ -7,13 +7,13 @@ With the launch of Mountain Lion, Apple has leapfrogged this feature by making i
 
 Planned Browser Support:
 
-Safari 6 - Native Notifications
-Chrome 4+ - Native Notifications (only tested in latest version however the API was introduced in Chrome 4)
-Safari iOS 5 - Window based polyfill
-Firefox - Window based polyfill
-Internet explorer - Window based polyfill
-Opera - Window based polyfill
-Getting started:
+* Safari 6 - Native Notifications
+* Chrome 4+ - Native Notifications (only tested in latest version however the API was introduced in Chrome 4)
+* Safari iOS 5 - Window based polyfill
+* Firefox - Window based polyfill
+* Internet explorer - Window based polyfill
+* Opera - Window based polyfill
+* Getting started:
 
 There are two ways you can get permission to show notifications to your users, the notificationPrompt provides the best cross browser experience
 
@@ -23,10 +23,11 @@ Once you have permission you can simply create a notification using $.notificati
 
 The returned object has the following:
 
-.show() - shows the notification
-onclick: - callback to run code if user clicks on the notification (so if user clicks you can take them to a page about that notification)
-onclose: - callback to run code after notification has gone
-ondisplay: - callback to run code when notification is shown
-onerror: - callback to handle any errors
-onshow: -
+* .show() - shows the notification
+* .onclick: - callback to run code if user clicks on the notification (so if user clicks you can take them to a page about that notification)
+* .onclose: - callback to run code after notification has gone
+* .ondisplay: - callback to run code when notification is shown
+* .onerror: - callback to handle any errors
+* .onshow: -
+* 
 © Copyright Jonathan Fielding
