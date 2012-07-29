@@ -28,6 +28,6 @@ The returned object has the following:
 * .onclose: - callback to run code after notification has gone
 * .ondisplay: - callback to run code when notification is shown
 * .onerror: - callback to handle any errors
-* .onshow: -
-* 
-© Copyright Jonathan Fielding
+* .onshow: - 
+
+

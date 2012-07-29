@@ -40,6 +40,33 @@
 	border: 1px solid #aaa;
 }
 
+.ntfy_request a.allow{
+	right: 95px;
+}
+
 .ntfy_request a:hover{
 	background: #bbb;
+}
+
+.nfty_panel{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	width: 300px;
+}
+
+.nfty_panel .ntfy_notification{
+	border: 1px solid #000;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
+	background: #fff;
+}
+
+.nfty_panel .ntfy_notification p.ntfy_title{
+	margin-top: 0px;
+}
+
+.nfty_panel .ntfy_notification p.ntfy_content{
+	margin-bottom: 0px;
 }
