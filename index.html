@@ -26,43 +26,57 @@
 	</header>
 	<div class="content" role="main">
 		<div class="wrapper">
-			<p>For a while now chrome has had the ability to show notifications from tabs you have open, this is through taking advantage of the new Notifications api and it is used by some of google's services including gmail.</p>
-			<p>With the launch of Mountain Lion, Apple has leapfrogged this feature by making it so that notifications show at an operating system level within notification centre, however after testing some of the code people have written for chrome I found things were not working as I expected, also I felt that older browsers were being left out of the notification party so the aim of this project is to provide a standard way to implement notifications across browsers.</p>
-			<h2>Planned Browser Support:</h2>
-			<ul>
-				<li>Safari 6 - Native Notifications</li>
-				<li>Chrome 4+ - Native Notifications (only tested in latest version however the API was introduced in Chrome 4)</li>
-				<li>Safari iOS 5 - Window based polyfill</li>
-				<li>Firefox - Window based polyfill</li>
-				<li>Internet explorer - Window based polyfill</li>
-				<li>Opera - Window based polyfill</li>
-			</ul>
+			<section>
+				<p>For a while now chrome has had the ability to show notifications from tabs you have open, this is through taking advantage of the new Notifications api and it is used by some of google's services including gmail.</p>
+				<p>With the launch of Mountain Lion, Apple has leapfrogged this feature by making it so that notifications show at an operating system level within notification centre, however after testing some of the code people have written for chrome I found things were not working as I expected, also I felt that older browsers were being left out of the notification party so the aim of this project is to provide a standard way to implement notifications across browsers.</p>
+			</section>
 			
-			<h2>Getting started:</h2>
+			<section>
+				<h2>Planned Browser Support:</h2>
+				<ul>
+					<li>Safari 6 - Native Notifications</li>
+					<li>Chrome 4+ - Native Notifications (only tested in latest version however the API was introduced in Chrome 4)</li>
+					<li>Safari iOS 5 - Window based polyfill</li>
+					<li>Firefox - Window based polyfill</li>
+					<li>Internet explorer - Window based polyfill</li>
+					<li>Opera - Window based polyfill</li>
+				</ul>
+			</section>
 			
-			<ol>
-				<li>
-					<p>There are two ways you can get permission to show notifications to your users, the notificationPrompt provides the best cross browser experience</p>
-					<ul>
-						<li>$.notifications.notificationPrompt() - provides an overlay which tells the user about notifications, upon closing it the browser permissions prompt is shown</li>
-						<li>$.notifications.requestPermission() - triggers the browser permissions prompt, in chrome this must be triggered by a user click action</li>
-					</ul>
-				</li>
-				<li>
-					<p>Once you have permission you can simply create a notification using $.notifications.newNotification('icon.png','title','content'), this returns a notification object</p>
-					<p>The returned object has the following:</p>
-					<ul>
-						<li>.show() - shows the notification</li>
-						<li>onclick: - callback to run code if user clicks on the notification (so if user clicks you can take them to a page about that notification)</li>
-						<li>onclose: - callback to run code after notification has gone</li>
-						<li>ondisplay: - callback to run code when notification is shown</li>
-						<li>onerror: - callback to handle any errors</li>
-						<li>onshow: - </li>
-					</ul>
-				</li>
-			</ol>
+			<section>
+				<h2>Getting started:</h2>
+				
+				<ol>
+					<li>
+						<p>There are two ways you can get permission to show notifications to your users, the notificationPrompt provides the best cross browser experience</p>
+						<ul>
+							<li>$.notifications.notificationPrompt() - provides an overlay which tells the user about notifications, upon closing it the browser permissions prompt is shown</li>
+							<li>$.notifications.requestPermission() - triggers the browser permissions prompt, in chrome this must be triggered by a user click action</li>
+						</ul>
+					</li>
+					<li>
+						<p>Once you have permission you can simply create a notification using $.notifications.newNotification('icon.png','title','content'), this returns a notification object</p>
+						<p>The returned object has the following:</p>
+						<ul>
+							<li>.show() - shows the notification</li>
+							<li>onclick: - callback to run code if user clicks on the notification (so if user clicks you can take them to a page about that notification)</li>
+							<li>onclose: - callback to run code after notification has gone</li>
+							<li>ondisplay: - callback to run code when notification is shown</li>
+							<li>onerror: - callback to handle any errors</li>
+							<li>onshow: - </li>
+						</ul>
+					</li>
+				</ol>
+			</section>
 			
-			<h2>Examples:</h2>
+			<section>
+				<h2>Examples:</h2>
+			</section>
+			
+			<section>
+				<h2>Buy me a beer</h2>
+				<p>I put a lot of of time into each of my open source projects so if you use it and like it and would like to buy me a beer (I am t-total so I actually drink CocaCola) you are welcome to make a donation to my beer fund via PayPal</p>
+			</section>
 			
 		</div>
 	</div>

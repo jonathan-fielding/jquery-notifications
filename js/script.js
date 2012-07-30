@@ -3,7 +3,7 @@
 */
 
 $(document).ready(function(){
-	$.notifications.notificationPrompt()
+	$.notifications.notificationPrompt();
 });
 
 

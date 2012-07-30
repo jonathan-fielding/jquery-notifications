@@ -76,6 +76,7 @@ td { vertical-align: top; }
 
 body{
 	font-size: 62.5%;
+	background: #3b4813;
 }
 
 p, li, a{
@@ -126,7 +127,7 @@ footer li a{
 }
 
 .content{
-	padding: 64px 20px;
+	padding: 48px 20px 44px;
 }
 
 p, ul,ol{
@@ -138,6 +139,12 @@ p, ul,ol{
 	margin: 0 auto;
 }
 
+section{
+	background: #fff;
+	margin: 20px 0px;
+	padding: 1px 10px;
+	border-bottom: 5px solid #a4c835;
+}
 
 /* =============================================================================
    Media Queries

@@ -191,7 +191,8 @@
     		},function(){
     			return polyfillCheckPermissions();
     		});
-    	}
+    	},
+    	notificationPrompt: notificationPrompt
     };
 
   }();
