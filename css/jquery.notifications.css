@@ -60,13 +60,37 @@
 	border-radius: 10px;
 	margin: 10px;
 	padding: 10px;
-	background: #fff;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 49%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(49%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#e1e1e1 49%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#e1e1e1 49%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#e1e1e1 49%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 49%,#f6f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+	-moz-box-shadow: 2px 2px 3px #afafaf;
+	-webkit-box-shadow: 2px 2px 3px #afafaf;
+	box-shadow: 2px 2px 3px #afafaf;
+	position: relative;
 }
 
 .nfty_panel .ntfy_notification p.ntfy_title{
 	margin-top: 0px;
+	margin-bottom: 5px;
+	font-weight: bold;
 }
 
 .nfty_panel .ntfy_notification p.ntfy_content{
 	margin-bottom: 0px;
+	margin-top: 5px;
+}
+
+.nfty_panel .ntfy_notification .close{
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	text-indent: -9999px;
+	background: url('../img/close.png') 0 0 no-repeat;
 }

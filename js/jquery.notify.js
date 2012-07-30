@@ -92,7 +92,6 @@
     };
     
     var polyfillNotification = function(icon, title, content){
-    	console.log(icon);
     	
     	if(icon === undefined || title === undefined || content === undefined){
     		console.error("TypeError: Not enough arguments");
@@ -101,29 +100,44 @@
 	    	if(polyfillCheckPermissions()){
 	        	return {
 	        		show: function(){
-	        			var $ntfy_panel = $('.nfty_panel'), notification_id = "notify"+Math.floor(Math.random()*10000000);
+	        			
+	        			var $ntfy_panel = $('.nfty_panel'), funcs = this, notification_id = "notify"+Math.floor(Math.random()*10000000);
+	        			var closePanel = function(){
+	        				if($('#'+notification_id).length){
+		        				$('#'+notification_id).fadeOut('',function(){
+	        						$(this).remove();
+	        						funcs.onclose();
+	        					});
+        					}
+	        			};
 	        			
 	        			if($ntfy_panel.length === 0){
 	        				$('body').append('<div class="nfty_panel"></div>');
 	        				$ntfy_panel = $('.nfty_panel');
 	        			}
 	        			
-	        			$ntfy_panel.append('<div class="ntfy_notification" id="'+notification_id+'"><p class="ntfy_title">'+ title + '</p><p class="ntfy_content">'+ content + '</p></div>');
+	        			$ntfy_panel.append('<div class="ntfy_notification" style="display:none" id="'+notification_id+'"><p class="ntfy_title">'+ title + '</p><p class="ntfy_content">'+ content + '</p><a href="#" class="close">close</a></div>');
+	        			$ntfy_panel.find('.ntfy_notification').last().fadeIn();
+	        			
+	        			setTimeout(closePanel, 4000);
+	        			$('#'+notification_id).on('click',closePanel);
 	        		
 	        			$ntfy_panel.find('.ntfy_notification').on('click',this.onclick);
-	        			this.onshow();
+	        			funcs.onshow();
 	        			
 	        		},
 	        		onclick: function(){
-	        			alert('test');
+	        			//alert('click');
 	        		},
 	        		onclose: function(){
+	        			alert('close');
 	        		},
 	        		ondisplay: function(){
 	        		},
 	        		onerror: function(){
 	        		},
 	        		onshow: function(){
+	        			//alert('show');
 	        		}
 	        	};
 	    	}
@@ -167,16 +181,18 @@
     	newNotification: function(icon, title, content){
     		return checkNotifications(function(){
     			return nativeNotification(icon, title, content);
-    		},function(){});
+    		},function(){
+    			return polyfillNotification(icon, title, content);
+    		});
     	},
-    	checkPermission: nativeCheckPermissions,
-    	notificationPrompt : notificationPrompt,
-    	polyfillRequestPermissions: polyfillRequestPermissions,
-    	polyfillNotification: polyfillNotification
+    	checkPermission: function(){
+    		return checkNotifications(function(){
+    			return nativeCheckPermissions();
+    		},function(){
+    			return polyfillCheckPermissions();
+    		});
+    	}
     };
 
   }();
 })( jQuery );
-
-
-//webkitNotifications.requestPermission(function(){});
