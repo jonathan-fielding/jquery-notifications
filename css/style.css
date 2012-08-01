@@ -176,6 +176,20 @@ section{
 	border-radius: 3px 3px 0 0;
 }
 
+a.button,a.button:hover,a.button:visited{
+	background: #ccc;
+	display: inline-block;
+	padding: 5px;
+	text-decoration: none;
+	color: #000;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+
+a.button:hover{
+	background: #000;
+	color: #fff;
+}
 
 /* =============================================================================
    Media Queries

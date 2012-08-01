@@ -3,8 +3,13 @@
 */
 
 $(document).ready(function(){
-	$.notifications.notificationPrompt();
-	$.notifications.newNotification('img/logo.png','title','content').show();
+	$('#example1').on('click',function(){
+		$.notifications.requestPermission(function(){
+			$.notifications.newNotification('img/logo.png','title','content').show();
+		});
+		
+		return false;
+	});	
 });
 
 

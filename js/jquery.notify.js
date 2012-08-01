@@ -39,7 +39,16 @@
     
     var nativeRequestPermissions = function(callback){
     	if(!nativeCheckPermissions()){
-        	webkitNotifications.requestPermission(function(){});
+        	if(callback !== undefined){
+        		webkitNotifications.requestPermission(callback);
+        	}
+        	else{
+        		webkitNotifications.requestPermission(function(){});
+        	}
+    	}
+    	else{
+    		console.log('test');
+    		callback();
     	}
     };
     
@@ -186,7 +195,11 @@
     		
     	},
     	requestPermission: function(callback){
-    		return checkNotifications(nativeRequestPermissions, polyfillRequestPermissions)
+    		return checkNotifications(function(){
+    			return nativeRequestPermissions(callback);
+    		},function(){
+    			return polyfillRequestPermissions(callback);
+    		});
     	},
     	newNotification: function(icon, title, content){
     		return checkNotifications(function(){

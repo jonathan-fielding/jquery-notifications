@@ -79,11 +79,28 @@
 			
 			<section>
 				<h2>Examples:</h2>
+				
+				<h3>Example 1 - Show new notification</h3>
+				<p>To show a notification you can simply run:</p>
+				<p>
+					$.notifications.requestPermission(function(){
+						$.notifications.newNotification('img/logo.png','title','content').show();
+					});
+				</p>
+				<p>
+					This little snippet does the following:
+				</p>
+				<ul>
+					<li>Checks and requests permission (if necessary)</li>
+					<li>Shows the notification</li>
+				</ul>
+				<p><a href="#" class="button" id="example1">Demo</a></p>
 			</section>
 			
 			<section>
 				<h2>Buy me a beer</h2>
-				<p>I put a lot of of time into each of my open source projects so if you use it and like it and would like to buy me a beer (I am t-total so I actually drink CocaCola) you are welcome to make a donation to my beer fund via PayPal</p>
+				<p>I put a lot of of time into each of my open source projects so if you use it and like it and would like to buy me a beer (I am t-total so I actually drink CocaCola but you get the principle) you are welcome to make a donation to my drink fund via PayPal</p>
+				<p>Plus anyone who buys me a drink will have the option to get thanked on this site</p>
 			</section>
 			
 		</div>
