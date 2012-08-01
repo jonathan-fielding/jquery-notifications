@@ -10,6 +10,14 @@ $(document).ready(function(){
 		
 		return false;
 	});	
+	
+	$('#example2').on('click',function(){
+		$.notifications.requestPermission(function(){
+			$.notifications.newNotification('img/logo.png','title','content').show();
+		});
+		
+		return false;
+	});	
 });
 
 
