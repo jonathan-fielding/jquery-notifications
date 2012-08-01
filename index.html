@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-notifications by jonathan-fielding</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Jquery-notifications</h1>
+        <p class="header"></p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/jonathan-fielding/jquery-notifications/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/jonathan-fielding/jquery-notifications/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/jonathan-fielding/jquery-notifications">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/jonathan-fielding">jonathan-fielding</a></p>
+
+
+      </header>
+      <section>
+        <h1>jQuery Notifications</h1>
+
+<p>For a while now chrome has had the ability to show notifications from tabs you have open, this is through taking advantage of the new Notifications api and it is used by some of google's services including gmail.</p>
+
+<p>With the launch of Mountain Lion, Apple has leapfrogged this feature by making it so that notifications show at an operating system level within notification centre, however after testing some of the code people have written for chrome I found things were not working as I expected, also I felt that older browsers were being left out of the notification party so the aim of this project is to provide a standard way to implement notifications across browsers.</p>
+
+<h2>Planned Browser Support:</h2>
+
+<ul>
+<li>Safari 6 - Native Notifications</li>
+<li>Chrome 4+ - Native Notifications (only tested in latest version however the API was introduced in Chrome 4)</li>
+<li>Safari iOS 5 - Window based polyfill</li>
+<li>Firefox - Window based polyfill</li>
+<li>Internet explorer - Window based polyfill</li>
+<li>Opera - Window based polyfill</li>
+</ul><h2>Getting started:</h2>
+
+<p>There are two ways you can get permission to show notifications to your users, the notificationPrompt provides the best cross browser experience</p>
+
+<p>$.notifications.notificationPrompt() - provides an overlay which tells the user about notifications, upon closing it the browser permissions prompt is shown
+$.notifications.requestPermission() - triggers the browser permissions prompt, in chrome this must be triggered by a user click action
+Once you have permission you can simply create a notification using $.notifications.newNotification('icon.png','title','content'), this returns a notification object</p>
+
+<p>The returned object has the following:</p>
+
+<ul>
+<li>.show() - shows the notification</li>
+<li>.onclick: - callback to run code if user clicks on the notification (so if user clicks you can take them to a page about that notification)</li>
+<li>.onclose: - callback to run code after notification has gone</li>
+<li>.ondisplay: - callback to run code when notification is shown</li>
+<li>.onerror: - callback to handle any errors</li>
+<li>.onshow: - </li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+		
+  </body>
+</html>
