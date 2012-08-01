@@ -19,7 +19,9 @@
     	}
     };
     
-    var notificationPrompt = function(){
+    
+    // Native Functionality
+    var nativeNotificationPrompt = function(){
     	if(!nativeCheckPermissions()){
 	    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>');
 	    	$('.ntfy_request a,.ntfy_overlay').click(function(){
@@ -28,9 +30,7 @@
 	    	});
     	}
     };
-    
-    
-   	// Native Functionality
+   	
     var nativeRequestPermissions = function(callback){
     	if(!nativeCheckPermissions()){
 	    	webkitNotifications.requestPermission(function(){});
@@ -65,6 +65,16 @@
     };
     
     // Polyfill functionality
+    var polyfillNotificationPrompt = function(){
+    	if(!polyfillCheckPermissions()){
+        	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>');
+        	$('.ntfy_request a,.ntfy_overlay').click(function(){
+        		polyfillRequestPermissions()
+        		$('.ntfy_request, .ntfy_overlay').remove();
+        	});
+    	}
+    };
+    
     var polyfillRequestPermissions = function(callback){
     	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, cookies are used to manage these preferences</p> <a href="#" class="allow">allow</a><a href="#" class="deny">deny</a></div>');
     	$('.ntfy_request').on('click','a',function() {
@@ -192,7 +202,13 @@
     			return polyfillCheckPermissions();
     		});
     	},
-    	notificationPrompt: notificationPrompt
+    	notificationPrompt: function(){
+    		return checkNotifications(function(){
+    			return nativeNotificationPrompt();
+    		},function(){
+    			return polyfillNotificationPrompt();
+    		});
+    	}
     };
 
   }();

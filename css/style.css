@@ -91,24 +91,31 @@ header,footer{
 	position: fixed;
 	left: 0px;
 	width: 100%;
-	background: #fff;
+	background: #2c3a00;
 }
 
 header{
 	top: 0px;
-	border-bottom: 1px solid #333;
+	border-bottom: 5px solid #779e00;
+}
+
+header sub{
+	font-size: 0.5em;
+	bottom: 0px;
 }
 
 footer{
 	position: fixed;
 	bottom: 0px;
-	border-top: 1px solid #333;
+	border-top: 5px solid #779e00;
 }
 
 h1{
 	text-align: center;
 	margin: 0px;
 	padding: 10px;
+	color: #fff;
+	font-size: 3em;
 }
 
 footer ul{
@@ -120,14 +127,36 @@ footer li{
 	float: left;
 	list-style: none;
 	padding: 10px 20px;
+	color: #fff;
 }
 
-footer li a{
-	color: #000;
+footer li a, footer li a:hover,footer li a:visited{
+	color: #fff;
+}
+
+.screenshots{
+	padding: 76px 0 0 0;
+	border-bottom: 5px solid #779e00;
+	width: 100%;
+	overflow: hidden;
+	height: 188px;
+}
+
+.screenshots .screenshot_wrapper{
+	width: 1204px;
+	margin: 0 auto;
+	border-left: 1px solid #000;
+	height: 188px;
+}
+
+.screenshots .screenshot_wrapper img{
+	display: block;
+	float: left;
+	border-right: 1px solid #000;
 }
 
 .content{
-	padding: 48px 20px 44px;
+	padding: 0px 20px 44px;
 }
 
 p, ul,ol{
@@ -143,8 +172,10 @@ section{
 	background: #fff;
 	margin: 20px 0px;
 	padding: 1px 10px;
-	border-bottom: 5px solid #a4c835;
+	border-bottom: 5px solid #779e00;
+	border-radius: 3px 3px 0 0;
 }
+
 
 /* =============================================================================
    Media Queries
