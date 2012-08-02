@@ -1,6 +1,4 @@
-/* Author:
-
-*/
+/* Author: Jonathan Fielding */
 
 $(document).ready(function(){
 	$('#example1').on('click',function(){
@@ -9,8 +7,9 @@ $(document).ready(function(){
 		});
 		
 		return false;
-	});	
+	});
 	
+	$('.lightbox').colorbox();
 });
 
 
