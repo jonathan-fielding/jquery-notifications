@@ -7,7 +7,8 @@
   $.notifications = function() {  
 
     var default_settings = {
-    	mobile_notifications : true
+    	mobile_notifications : true,
+    	notification_prompt_html: '<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>'
 	};
 
     var checkNotifications = function(native, polyfill) {
@@ -23,18 +24,12 @@
     // Native Functionality
     var nativeNotificationPrompt = function(){
     	if(!nativeCheckPermissions()){
-	    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>');
+	    	$('body').append(default_settings.notification_prompt_html);
 	    	$('.ntfy_request a,.ntfy_overlay').click(function(){
-	    		nativeRequestPermissions()
+	    		nativeRequestPermissions();
 	    		$('.ntfy_request, .ntfy_overlay').remove();
 	    	});
     	}
-    };
-   	
-    var nativeRequestPermissions = function(callback){
-    	if(!nativeCheckPermissions()){
-	    	webkitNotifications.requestPermission(function(){});
-		}
     };
     
     var nativeRequestPermissions = function(callback){
@@ -166,8 +161,7 @@
     	}
     };
     
-    //Store settings locally (cookies/local storage)
-    
+    //Store settings locally (cookies)
     var setData = function(name, value){
     	var exdate=new Date(), exdays = 365;
     	exdate.setDate(exdate.getDate() + exdays);
