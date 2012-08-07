@@ -125,12 +125,27 @@
 				
 				<h3>Example 3 - Using callbacks to extend functionality</h3>
 				
-				<p>Please note that requesting permissions can only be triggered by a click in chrome so to make it simple to request permissions in a consistent way across browsers I have included an information panel for users, this can be triggered with the following code and is aimed at running in your page $(document).ready</p>
-				<p>
-					<code><pre>$.notifications.notificationPrompt();</pre></code>
-				</p>
+				<p>We can add extra interaction to notifications in several ways, in this example we will add a click event to the notification</p>
+			
+				<p>Our first step is create the function we want to use for the click event, in this example we will make it simply show an alert</p>
+
+<p><code><pre>var notificationClick = function(){
+	alert('notification alert');
+};</pre></code></p>
 				
-				<p><a href="#" class="button" id="example2">Demo 2</a></p>
+				<p>After declaring the function we can now use the same notification code we used previously with one minor change to bind our click event to the onclick</p>
+
+<p><code><pre>$.notifications.requestPermission(function(){
+	var notify = $.notifications.newNotification('img/logo.png','title','content');
+	if(notify !== false){
+		<strong>notify.onclick = notificationClick;</strong>
+		notify.show();
+	}
+});</pre></code></p>
+	
+				<p>That's it, you should now be able to click on the notification and get a lovely alert message</p>
+				
+				<p><a href="#" class="button" id="example3">Demo 3</a></p>
 				
 			</section>
 			

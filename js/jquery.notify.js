@@ -42,7 +42,6 @@
         	}
     	}
     	else{
-    		console.log('test');
     		callback();
     	}
     };

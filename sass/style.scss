@@ -191,6 +191,9 @@ a.button:hover{
 	color: #fff;
 }
 
+pre code strong{
+	font: bold 1.1em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
 
 @import "partials/_mediaqueries";
 @import "partials/_helpers";
