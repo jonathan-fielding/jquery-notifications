@@ -79,19 +79,32 @@
     };
     
     var polyfillRequestPermissions = function(callback){
-    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, cookies are used to manage these preferences</p> <a href="#" class="allow">allow</a><a href="#" class="deny">deny</a></div>');
-    	$('.ntfy_request').on('click','a',function() {
-    		var $this = $(this);
-    		
-    		if($this.hasClass('allow')){
-    			setData('permission','granted');
-    		}
-    		else if($this.hasClass('deny')){
-    			setData('permission','denied');
-    		}
-    		
-    		$('.ntfy_request, .ntfy_overlay').remove();
-    	});	
+    	if(polyfillCheckPermissions() === false){
+	    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, cookies are used to manage these preferences</p> <a href="#" class="allow">allow</a><a href="#" class="deny">deny</a></div>');
+	    	$('.ntfy_request').on('click','a',function() {
+	    		var $this = $(this);
+	    		
+	    		if($this.hasClass('allow')){
+	    			setData('permission','granted');
+	    		}
+	    		else if($this.hasClass('deny')){
+	    			setData('permission','denied');
+	    		}
+	    		
+	    		if(callback !== undefined){
+	    			callback();
+	    		}
+	    		
+	    		$('.ntfy_request, .ntfy_overlay').remove();
+	    		
+	    		return false;
+	    	});
+	    }
+	    else{
+		    if(callback !== undefined){
+		    	callback();
+		    }
+	    }
     };
     
     var polyfillCheckPermissions = function(){
@@ -143,7 +156,7 @@
 	        			//alert('click');
 	        		},
 	        		onclose: function(){
-	        			alert('close');
+	        			//alert('close');
 	        		},
 	        		ondisplay: function(){
 	        		},

@@ -29,10 +29,7 @@ $(document).ready(function(){
 			
 			var notify = $.notifications.newNotification('img/logo.png','title','content');
 			if(notify !== false){
-				notify.onclick = function(){
-					console.log('notification alert');
-				};
-				notify.show();
+				notify.onclick = notificationClick;				notify.show();
 			}
 		});
 		
