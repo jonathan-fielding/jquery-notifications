@@ -80,22 +80,73 @@
 			<section>
 				<h2>Examples:</h2>
 				
-				<h3>Example 1 - Show new notification</h3>
-				<p>To show a notification you can simply run:</p>
+				<h3>Example 1 - Request permissions and show notification</h3>
+				<p>
+					Before you can show any notifications you need to request permission from the user (Please note that requesting permissions only works on click in chrome)
+				</p>
+				<p>
+<code><pre>$.notifications.requestPermission();</pre></code>
+				</p>
+				
+				<p>Once you have permission you can simply run:</p>
+				<p>
+<code><pre>$.notifications.newNotification('img/logo.png','title','content').show();</pre></code>
+				</p>
+				<p>
+					This will only show a notification if the user has given permission previously however if you want to show a notification straight after you have requested permission simply pass a callback to the permission request.
+				</p>
 				<p>
 <code><pre>$.notifications.requestPermission(function(){
 	$.notifications.newNotification('img/logo.png','title','content').show();
 });</pre></code>
 				</p>
+				
 				<p>
-					This little snippet does the following:
+					The problem with the code above is that should the user decline the permission to notify the code will error when it tries to show the notification. To avoid this we can store the notification in a variable, check its value and if it does not equal false run the show function.
+				<p>
+<code><pre>$.notifications.requestPermission(function(){
+	var notify = $.notifications.newNotification('img/logo.png','title','content');
+	if(notify !== false){
+		notify.show();
+	}
+});</pre></code>
 				</p>
-				<ul>
-					<li>Checks and requests permission (if necessary)</li>
-					<li>Shows the notification</li>
-				</ul>
+				
 				<p><a href="#" class="button" id="example1">Demo 1</a></p>
 			
+				<h3>Example 2 - Handling Chrome's onclick</h3>
+				
+				<p>Please note that requesting permissions can only be triggered by a click in chrome so to make it simple to request permissions in a consistent way across browsers I have included an information panel for users, this can be triggered with the following code and is aimed at running in your page $(document).ready</p>
+				<p>
+					<code><pre>$.notifications.notificationPrompt();</pre></code>
+				</p>
+				
+				<p><a href="#" class="button" id="example2">Demo 2</a></p>
+				
+				<h3>Example 3 - Using callbacks to extend functionality</h3>
+				
+				<p>We can add extra interaction to notifications in several ways, in this example we will add a click event to the notification</p>
+			
+				<p>Our first step is create the function we want to use for the click event, in this example we will make it simply show an alert</p>
+
+<p><code><pre>var notificationClick = function(){
+	alert('notification alert');
+};</pre></code></p>
+				
+				<p>After declaring the function we can now use the same notification code we used previously with one minor change to bind our click event to the onclick</p>
+
+<p><code><pre>$.notifications.requestPermission(function(){
+	var notify = $.notifications.newNotification('img/logo.png','title','content');
+	if(notify !== false){
+		<strong>notify.onclick = notificationClick;</strong>
+		notify.show();
+	}
+});</pre></code></p>
+	
+				<p>That's it, you should now be able to click on the notification and get a lovely alert message</p>
+				
+				<p><a href="#" class="button" id="example3">Demo 3</a></p>
+				
 			</section>
 			
 			<section>
@@ -118,7 +169,7 @@
 	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 	
 	<script src="js/jquery.notify.js"></script>
-	<script src="js/jquery.colorbox.js"></script>
+	<script src="js/jquery.colorbox.js"></script>	
 	<script src="js/script.js"></script>
 </body>
 </html>

@@ -7,7 +7,8 @@
   $.notifications = function() {  
 
     var default_settings = {
-    	mobile_notifications : true
+    	mobile_notifications : true,
+    	notification_prompt_html: '<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>'
 	};
 
     var checkNotifications = function(native, polyfill) {
@@ -23,18 +24,12 @@
     // Native Functionality
     var nativeNotificationPrompt = function(){
     	if(!nativeCheckPermissions()){
-	    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, your browser will now ask your permission</p> <a href="#">close</a></div>');
+	    	$('body').append(default_settings.notification_prompt_html);
 	    	$('.ntfy_request a,.ntfy_overlay').click(function(){
-	    		nativeRequestPermissions()
+	    		nativeRequestPermissions();
 	    		$('.ntfy_request, .ntfy_overlay').remove();
 	    	});
     	}
-    };
-   	
-    var nativeRequestPermissions = function(callback){
-    	if(!nativeCheckPermissions()){
-	    	webkitNotifications.requestPermission(function(){});
-		}
     };
     
     var nativeRequestPermissions = function(callback){
@@ -47,7 +42,6 @@
         	}
     	}
     	else{
-    		console.log('test');
     		callback();
     	}
     };
@@ -85,19 +79,32 @@
     };
     
     var polyfillRequestPermissions = function(callback){
-    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, cookies are used to manage these preferences</p> <a href="#" class="allow">allow</a><a href="#" class="deny">deny</a></div>');
-    	$('.ntfy_request').on('click','a',function() {
-    		var $this = $(this);
-    		
-    		if($this.hasClass('allow')){
-    			setData('permission','granted');
-    		}
-    		else if($this.hasClass('deny')){
-    			setData('permission','denied');
-    		}
-    		
-    		$('.ntfy_request, .ntfy_overlay').remove();
-    	});	
+    	if(polyfillCheckPermissions() === false){
+	    	$('body').append('<div class="ntfy_overlay"></div><div class="ntfy_request"><p>This website would like to display desktop notifications, cookies are used to manage these preferences</p> <a href="#" class="allow">allow</a><a href="#" class="deny">deny</a></div>');
+	    	$('.ntfy_request').on('click','a',function() {
+	    		var $this = $(this);
+	    		
+	    		if($this.hasClass('allow')){
+	    			setData('permission','granted');
+	    		}
+	    		else if($this.hasClass('deny')){
+	    			setData('permission','denied');
+	    		}
+	    		
+	    		if(callback !== undefined){
+	    			callback();
+	    		}
+	    		
+	    		$('.ntfy_request, .ntfy_overlay').remove();
+	    		
+	    		return false;
+	    	});
+	    }
+	    else{
+		    if(callback !== undefined){
+		    	callback();
+		    }
+	    }
     };
     
     var polyfillCheckPermissions = function(){
@@ -149,7 +156,7 @@
 	        			//alert('click');
 	        		},
 	        		onclose: function(){
-	        			alert('close');
+	        			//alert('close');
 	        		},
 	        		ondisplay: function(){
 	        		},
@@ -166,8 +173,7 @@
     	}
     };
     
-    //Store settings locally (cookies/local storage)
-    
+    //Store settings locally (cookies)
     var setData = function(name, value){
     	var exdate=new Date(), exdays = 365;
     	exdate.setDate(exdate.getDate() + exdays);
